@@ -5,12 +5,11 @@ console.log('got it')
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  
+  let chart = "top"
   axios.get(`/tracks`, {
     params: {
       chart: "mxmweekly",
-      country: "kr",
-      limit: 1,
+
     }
   })
     .then((response) => {
