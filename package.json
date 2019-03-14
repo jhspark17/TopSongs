@@ -1,0 +1,31 @@
+{
+  "name": "TopSongs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "webpack --watch --mode=development",
+    "start": "node app.js",
+    "start:debug": "DEBUG=* node app.js",
+    "server": "node ./backend/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.5",
+    "babel-preset-es2015": "^6.24.1",
+    "express": "^4.16.4",
+    "node-fetch": "^2.3.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
