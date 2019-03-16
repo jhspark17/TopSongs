@@ -4,13 +4,24 @@
 <head>
   <meta charset="utf-8">
   <title></title>
-  
+    <link rel="stylesheet" href="./main.css" type="text/css">
+    <script src="./searchFunc.js" type="text/javascript"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="./bundle.js"></script>
 </head>
 
 <body>
-  <script type="text/javascript" src="./bundle.js"></script>
-  <div>Hello World</div>
-  <main id='main'></main>
+  <main id="main"></main>
+  <h1 id="header">Top songs or artist in a country</h1>
+  <div class="input">
+    <input type="text" id="type"  placeholder="Artist or Track">
+    <input type="text" id="country"  placeholder="Country">
+    <input type="text" id="chart"  placeholder="Type of Chart">
+    <input type="text" id="limit" placeholder="Limit">
+    </div>
+    <div class="submitButton">
+    <input type="submit" id="submit" value="Submit">
+    </div>
+    <svg width=1200 height=800></svg>
 </body>
-
 </html>
