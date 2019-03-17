@@ -1,11 +1,4 @@
 
-
-
-body{
-  height: 70vh;
-}
-
-
 /*-------------------------- Header ------------------------------------ */
 #header{
   display: flex;
@@ -60,8 +53,31 @@ body{
   background-color: #eee; /* Add a hover effect to all links, except for headers */
 }
 
-/* .svg{
-  width: 100;
-  height:100;
-  background-color: black;
-} */
+.svg{
+  display: flex;
+  justify-content: center;
+}
+
+body {
+      font-family: Sans-serif;
+      font-size: 11px;
+  }
+
+  .slice {
+      cursor: pointer;
+  }
+
+  .slice .main-arc {
+      stroke: #E5E2E0;
+      stroke-width: 1px;
+  }
+
+  .slice .hidden-arc {
+      fill: none;
+  }
+
+  .slice text {
+      pointer-events: none;
+   
+      text-anchor: middle;
+  }

@@ -1,11 +1,10 @@
-import makeD3 from './makeD3'
+import makeD3 from './makeD3';
 
 const render = (nodes, country) => {
   let nodeData = {
     name: `top songs in ${country}`,
     children: []
   };
-
   for (let i = 0; i < nodes.length; i ++) {
     let temp = {};
     let currentNode = nodes[i];
@@ -27,15 +26,16 @@ const render = (nodes, country) => {
         tempTrack.trackUrl = track.track.track_share_url;
         tempTrack.rating = track.track.track_rating;
         tempTrack.favorites = track.track.num_favourite;
-        tempTrack.size = 3;
+        tempTrack.size = 1;
         tempAlbum.children.push(tempTrack);
       }
       temp.children.push(tempAlbum);
     }
     nodeData.children.push(temp);
   }
+  
   makeD3(nodeData);
-}
+};
 
 export default render;
 
