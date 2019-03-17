@@ -8,7 +8,7 @@ const render = (nodes, country) => {
   for (let i = 0; i < nodes.length; i ++) {
     let temp = {};
     let currentNode = nodes[i];
-    temp.artistName = currentNode.artistName;
+    temp.name = currentNode.artistName;
     temp.artistRating = currentNode.artistRating;
   
     temp.children = [];
@@ -16,13 +16,13 @@ const render = (nodes, country) => {
     for (let j = 0; j < currentNode.albums.length; j++) {
       let currentAlbum = currentNode.albums[j];
       let tempAlbum = {};
-      tempAlbum.albumName = currentAlbum.album.album_name;
+      tempAlbum.name = currentAlbum.album.album_name;
       tempAlbum.children = [];
 
       for (let k = 0; k < currentAlbum.album.tracks.length; k++) {
         let track = currentAlbum.album.tracks[k];
         let tempTrack = {};
-        tempTrack.trackName = track.track.track_name;
+        tempTrack.name = track.track.track_name;
         tempTrack.trackUrl = track.track.track_share_url;
         tempTrack.rating = track.track.track_rating;
         tempTrack.favorites = track.track.num_favourite;
