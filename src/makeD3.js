@@ -1,19 +1,24 @@
 import * as d3 from "d3";
 import * as d3Color from "d3-contour";
 
-function computeTextRotation(d) {
-  var angle = ((d.x0 + d.x1) / Math.PI) * 90;
+// function computeTextRotation(d) {
+//   var angle = ((d.x0 + d.x1) / Math.PI) * 90;
 
-  // Avoid upside-down labels
-  return angle < 120 || angle > 270 ? angle : angle + 180; // labels as rims
-  //return (angle < 180) ? angle - 90 : angle + 90;  // labels as spokes
-}
+//   // Avoid upside-down labels
+//   return angle < 120 || angle > 270 ? angle : angle + 180; // labels as rims
+//   //return (angle < 180) ? angle - 90 : angle + 90;  // labels as spokes
+// }
 
-const makeD3 = nodeData => {
-  debugger
-  var width = 700; // <-- 1
-  var height = 700;
-  var radius = Math.min(width, height) / 2; // < -- 2
+export const makeD3 = nodeData => {
+  var width = 960,
+    height = 700,
+    radius = Math.min(width, height) / 2 - 10;
+
+  var formatNumber = d3.format(",d");
+
+  var x = d3.scaleLinear().range([0, 2 * Math.PI]);
+
+  var y = d3.scaleSqrt().range([0, radius]);
   const dark = [
     "#B08B12",
     "#BA5F06",
@@ -59,57 +64,61 @@ const makeD3 = nodeData => {
     .reduce((a, b) => a.concat(b));
   var color = d3.scaleOrdinal(lightGreenFirstPalette); // <-- 3
 
-  var g = d3
-    .select("svg") // <-- 1
-    .attr("width", width) // <-- 2
+  var partition = d3.partition();
+
+  var arc = d3.arc()
+    .startAngle(function (d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x0))); })
+    .endAngle(function (d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x1))); })
+    .innerRadius(function (d) { return Math.max(0, y(d.y0)); })
+    .outerRadius(function (d) { return Math.max(0, y(d.y1)); });
+
+
+  var svg = d3.select("body").append("svg")
+    .attr("width", width)
     .attr("height", height)
-    .append("g") // <-- 3
-    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")");
 
-  var partition = d3.partition().size([2 * Math.PI, radius]);
-
-  // Find data root
-  var root = d3.hierarchy(nodeData).sum(function(d) {
-    return d.size;
-  });
-
-  // Size arcs
-  partition(root);
-  var arc = d3
-    .arc()
-    .startAngle(function(d) {
-      return d.x0;
-    })
-    .endAngle(function(d) {
-      return d.x1;
-    })
-    .innerRadius(function(d) {
-      return d.y0;
-    })
-    .outerRadius(function(d) {
-      return d.y1;
-    });
-
-  // Put it all together
-  g.selectAll('g')
-    .data(root.descendants())
-    .enter().append('g').attr("class", "node").append('path')
-    .attr("display", function (d) { return d.depth ? null : "none"; })
+  let root = d3.hierarchy(nodeData);
+  root.sum(function (d) { return d.size; });
+  svg.selectAll("path")
+    .data(partition(root).descendants())
+    .enter().append("path")
     .attr("d", arc)
-    .style('stroke', '#fff')
-    .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); });
+    .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); })
+    .on("click", click)
+    .append("title")
+    .text(function (d) { return d.data.name + "\n" + formatNumber(d.value); });
 
-
-  // Populate the <text> elements with our data-driven titles.
-  g.selectAll(".node")
-    .append("text")
-    .attr("transform", function (d) {
-      return "translate(" + arc.centroid(d) + ")rotate(" + computeTextRotation(d) + ")";
-    })
-    .attr("dx", "-20") // radius margin
-    .attr("dy", ".5em") // rotation align
-    .text(function (d) { return d.parent ? d.data.name : "" });
+ 
+  function click(d) {
+    svg
+      .transition()
+      .duration(750)
+      .tween("scale", function () {
+        var xd = d3.interpolate(x.domain(), [d.x0, d.x1]),
+          yd = d3.interpolate(y.domain(), [d.y0, 1]),
+          yr = d3.interpolate(y.range(), [d.y0 ? 20 : 0, radius]);
+        return function (t) {
+          x.domain(xd(t));
+          y.domain(yd(t)).range(yr(t));
+        };
+      })
+      .selectAll("path")
+      .attrTween("d", function (d) {
+        return function () {
+          return arc(d);
+        };
+      });
+  }
 
 };
 
-export default makeD3;
+
+
+
+
+
+
+
+  

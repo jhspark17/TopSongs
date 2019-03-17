@@ -26,7 +26,7 @@ const makeCall = async (type, country, chart, limit) => {
   data = data.data.message.body.artist_list;
 
   for (let i = 0; i < data.length; i ++) {
-    debugger
+    
     let current = data[i];
     let temp = {};
     temp.artistName = current.artist.artist_name;
@@ -55,7 +55,7 @@ const makeCall = async (type, country, chart, limit) => {
     final.push(temp);
     
   }
-  debugger
+
   render(final, country);
 };
 

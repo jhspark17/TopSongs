@@ -1,7 +1,6 @@
-import makeD3 from './makeD3';
+import { makeD3 } from './makeD3';
 
 const render = (nodes, country) => {
-  debugger
   let nodeData = {
     name: `top songs in ${country}`,
     children: []
