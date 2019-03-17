@@ -22,7 +22,7 @@ app.use(bodyParser.json()); //allows our app to respond to json
 app.post('/artists', (request, response) => {
   // make api call using fetch
   fetch(
-    `http://api.musixmatch.com/ws/1.1/chart.artists.get?apikey=8f1e02a00118dbdc0cf0c0fc1683c0d0&page=1&page_size=${request.body.limit}&country=${request.body.country}`
+    `http://api.musixmatch.com/ws/1.1/chart.artists.get?apikey=7194e69d9a5c6cc04a254313ddbd5816&page=1&page_size=${request.body.limit}&country=${request.body.country}`
   )
     .then(response => {
       return response.text();
@@ -37,7 +37,7 @@ app.post('/artists', (request, response) => {
 
 app.post('/albums', (request, response) => {
   fetch(
-    `http://api.musixmatch.com/ws/1.1/artist.albums.get?apikey=8f1e02a00118dbdc0cf0c0fc1683c0d0&artist_id=${request.body.id}&s_release_date=ascc&page_size=2`
+    `http://api.musixmatch.com/ws/1.1/artist.albums.get?apikey=7194e69d9a5c6cc04a254313ddbd5816&artist_id=${request.body.id}&s_release_date=ascc&page_size=2`
   )
     .then(response => {
       return response.text();
@@ -52,7 +52,7 @@ app.post('/albums', (request, response) => {
   
 app.post('/tracks', (request, response) => {
     fetch(
-      `http://api.musixmatch.com/ws/1.1/album.tracks.get?apikey=8f1e02a00118dbdc0cf0c0fc1683c0d0&album_id=${request.body.id}&page=1&page_size=4`
+      `http://api.musixmatch.com/ws/1.1/album.tracks.get?apikey=7194e69d9a5c6cc04a254313ddbd5816&album_id=${request.body.id}&page=1&page_size=4`
     )
       .then(response => {
         return response.text();

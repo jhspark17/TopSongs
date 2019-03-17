@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import * as d3Color from "d3-contour";
+
 function computeTextRotation(d) {
   var angle = ((d.x0 + d.x1) / Math.PI) * 90;
 
@@ -8,32 +9,8 @@ function computeTextRotation(d) {
   //return (angle < 180) ? angle - 90 : angle + 90;  // labels as spokes
 }
 
-function arcTweenPath(a, i) {
-  var oi = d3.interpolate({ x0: a.x0s, x1: a.x1s }, a);
-
-  function tween(t) {
-    var b = oi(t);
-    a.x0s = b.x0;
-    a.x1s = b.x1;
-    return arc(b);
-  }
-
-  return tween;
-}
-
-
-function arcTweenText(a, i) {
-  var oi = d3.interpolate({ x0: a.x0s, x1: a.x1s }, a);
-  function tween(t) {
-    var b = oi(t);
-    return (
-      "translate(" + arc.centroid(b) + ")rotate(" + computeTextRotation(b) + ")"
-    );
-  }
-  return tween;
-}
-
 const makeD3 = nodeData => {
+  debugger
   var width = 700; // <-- 1
   var height = 700;
   var radius = Math.min(width, height) / 2; // < -- 2
@@ -83,24 +60,18 @@ const makeD3 = nodeData => {
   var color = d3.scaleOrdinal(lightGreenFirstPalette); // <-- 3
 
   var g = d3
-    .select("svg")
-    .attr("width", width)
+    .select("svg") // <-- 1
+    .attr("width", width) // <-- 2
     .attr("height", height)
-    .append("g")
+    .append("g") // <-- 3
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-  // Data strucure
   var partition = d3.partition().size([2 * Math.PI, radius]);
 
   // Find data root
-  var root = d3
-    .hierarchy(nodeData)
-    .sum(function(d) {
-      return d.size;
-    })
-    .sort(function(a, b) {
-      return b.value - a.value;
-    });
+  var root = d3.hierarchy(nodeData).sum(function(d) {
+    return d.size;
+  });
 
   // Size arcs
   partition(root);
@@ -119,64 +90,26 @@ const makeD3 = nodeData => {
       return d.y1;
     });
 
-  var slice = g
-    .selectAll("g")
+  // Put it all together
+  g.selectAll('g')
     .data(root.descendants())
-    .enter()
-    .append("g")
-    .attr("class", "node");
-
-  slice
-    .append("path")
-    .attr("display", function(d) {
-      return d.depth ? null : "none";
-    })
+    .enter().append('g').attr("class", "node").append('path')
+    .attr("display", function (d) { return d.depth ? null : "none"; })
     .attr("d", arc)
-    .style("stroke", "#fff")
-    .style("fill", function(d) {
-      return color((d.children ? d : d.parent).data.name);
-    });
+    .style('stroke', '#fff')
+    .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); });
 
-  slice
+
+  // Populate the <text> elements with our data-driven titles.
+  g.selectAll(".node")
     .append("text")
-    .attr("transform", function(d) {
-      return (
-        "translate(" +
-        arc.centroid(d) +
-        ")rotate(" +
-        computeTextRotation(d) +
-        ")"
-      );
+    .attr("transform", function (d) {
+      return "translate(" + arc.centroid(d) + ")rotate(" + computeTextRotation(d) + ")";
     })
-    .attr("dx", "-20")
-    .attr("dy", ".5em")
-    .text(function(d) {
-      return d.parent ? d.data.name : "";
-    });
+    .attr("dx", "-20") // radius margin
+    .attr("dy", ".5em") // rotation align
+    .text(function (d) { return d.parent ? d.data.name : "" });
 
-  d3.selectAll(".sizeSelect").on("click", function(d, i) {
-    // Determine how to size the slices.
-    if (this.value === "size") {
-      root.sum(function(d) {
-        return d.size;
-      });
-    } else {
-      root.count();
-    }
-
-    partition(root);
-
-    slice
-      .selectAll("path")
-      .transition()
-      .duration(750)
-      .attrTween("d", arcTweenPath);
-    slice
-      .selectAll("text")
-      .transition()
-      .duration(750)
-      .attrTween("transform", arcTweenText);
-  });
 };
 
 export default makeD3;
