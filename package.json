@@ -5,9 +5,10 @@
   "main": "app.js",
   "scripts": {
     "build": "webpack --watch --mode=development",
-    "start": "node app.js",
+    "start": "node ./backend/app.js",
     "start:debug": "nodemon --inspect ./backend/app.js",
-    "server": "nodemon ./backend/app.js"
+    "server": "nodemon ./backend/app.js",
+    "heroku-postbuild": "webpack"
   },
   "keywords": [],
   "author": "",
