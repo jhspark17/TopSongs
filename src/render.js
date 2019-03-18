@@ -2,7 +2,7 @@ import { makeD3 } from './makeD3';
 
 const render = (nodes, country) => {
   let nodeData = {
-    name: `top songs in ${country}`,
+    name: `top artists in ${country}`,
     children: []
   };
   for (let i = 0; i < nodes.length; i ++) {

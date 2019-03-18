@@ -37,7 +37,7 @@ app.post('/artists', (request, response) => {
 
 app.post('/albums', (request, response) => {
   fetch(
-    `http://api.musixmatch.com/ws/1.1/artist.albums.get?apikey=7194e69d9a5c6cc04a254313ddbd5816&artist_id=${request.body.id}&s_release_date=ascc&page_size=2`
+    `http://api.musixmatch.com/ws/1.1/artist.albums.get?apikey=7194e69d9a5c6cc04a254313ddbd5816&artist_id=${request.body.id}&s_release_date=ascc&page_size=10`
   )
     .then(response => {
       return response.text();
@@ -52,7 +52,7 @@ app.post('/albums', (request, response) => {
   
 app.post('/tracks', (request, response) => {
     fetch(
-      `http://api.musixmatch.com/ws/1.1/album.tracks.get?apikey=7194e69d9a5c6cc04a254313ddbd5816&album_id=${request.body.id}&page=1&page_size=4`
+      `http://api.musixmatch.com/ws/1.1/album.tracks.get?apikey=7194e69d9a5c6cc04a254313ddbd5816&album_id=${request.body.id}&page_size=20`
     )
       .then(response => {
         return response.text();

@@ -5,18 +5,17 @@ import render from './render';
 document.addEventListener('DOMContentLoaded', () => {
  
   const getData = () => {
-    let type = document.getElementById("type").value;
     let country = document.getElementById("country").value;
     let chart = document.getElementById("chart").value;
     let limit = document.getElementById("limit").value;
     
   
-  makeCall(type, country, chart, limit);
+  makeCall(country, chart, limit);
  };
 
-const makeCall = async (type, country, chart, limit) => {
+const makeCall = async (country, chart, limit) => {
   let final = [];
-  let data = await axios.post(`/${type}`, {
+  let data = await axios.post(`/artists`, {
     country: country,
     chart: chart,
     limit: limit,
