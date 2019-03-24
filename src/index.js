@@ -1,23 +1,23 @@
-
 const axios = require('axios');
 
 import render from './render';
 document.addEventListener('DOMContentLoaded', () => {
- 
+ const displayLoader = () => {
+   let icon = document.getElementsByTagName("div")[3]; 
+   icon.className += "loader";
+   getData();
+ }
   const getData = () => {
+    d3.select("svg").remove();
     let country = document.getElementById("country").value;
-    let chart = document.getElementById("chart").value;
     let limit = document.getElementById("limit").value;
-    
-  
-  makeCall(country, chart, limit);
+    makeCall(country, limit);
  };
 
-const makeCall = async (country, chart, limit) => {
+const makeCall = async (country, limit) => {
   let final = [];
   let data = await axios.post(`/artists`, {
     country: country,
-    chart: chart,
     limit: limit,
   });
  
@@ -62,5 +62,12 @@ const makeCall = async (country, chart, limit) => {
 
 
   let submit = document.getElementById('submit');
-  submit.addEventListener("click", getData);
+  submit.addEventListener("click", displayLoader);
 });
+
+
+
+
+
+  
+

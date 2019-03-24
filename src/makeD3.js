@@ -10,8 +10,9 @@ function computeTextRotation(d) {
 }
 
 export const makeD3 = nodeData => {
-  d3.select("svg").remove();
-  
+  let icon = document.getElementsByTagName("div")[3];
+  icon.classList.remove("loader");
+
   var width = 960,
     height = 700,
     radius = Math.min(width, height) / 2 - 10;
@@ -144,7 +145,7 @@ export const makeD3 = nodeData => {
 
   const text = newSlice
     .append('text')
-    .attr('display', d => (textFits(d) ? null : 'none'));
+    .attr('display', d => (textFits(d) ? null : null));
 
 
   text
@@ -176,7 +177,7 @@ export const makeD3 = nodeData => {
 
     transition
       .selectAll('text')
-      .attrTween('display', d => () => (textFits(d) ? null : 'none'));
+      .attrTween('display', d => () => (textFits(d) ? null : null));
 
     moveStackToFront(d);
 
