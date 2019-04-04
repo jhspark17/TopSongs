@@ -10,6 +10,7 @@ function computeTextRotation(d) {
 }
 
 export const makeD3 = nodeData => {
+  console.log(nodeData)
   let icon = document.getElementsByTagName("div")[3];
   icon.classList.remove("loader");
 
@@ -94,7 +95,6 @@ export const makeD3 = nodeData => {
 
   const textFits = d => {
     const CHAR_SPACE = 6;
-
     const deltaAngle = x(d.x1) - x(d.x0);
     const r = Math.max(0, (y(d.y0) + y(d.y1)) / 2);
     const perimeter = r * deltaAngle;
@@ -145,7 +145,7 @@ export const makeD3 = nodeData => {
 
   const text = newSlice
     .append('text')
-    .attr('display', d => (textFits(d) ? null : null));
+    .attr('display', d => (textFits(d) ? d.data.name : d.data.rating));
 
 
   text
@@ -177,7 +177,7 @@ export const makeD3 = nodeData => {
 
     transition
       .selectAll('text')
-      .attrTween('display', d => () => (textFits(d) ? null : null));
+      .attrTween('display', d => () => (textFits(d) ? d.data.rating : ''));
 
     moveStackToFront(d);
 

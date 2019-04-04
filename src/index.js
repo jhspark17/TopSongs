@@ -55,7 +55,7 @@ const makeCall = async (country, limit) => {
     
   }
 
-  render(final, country);
+  render(final, country, limit);
 };
 
 
@@ -63,7 +63,16 @@ const makeCall = async (country, limit) => {
 
   let submit = document.getElementById('submit');
   submit.addEventListener("click", displayLoader);
+
+  window.addEventListener("keyup", function(e) {
+    if (e.keyCode === 13) {
+      displayLoader();
+    }
+  }, false)
 });
+
+  
+
 
 
 

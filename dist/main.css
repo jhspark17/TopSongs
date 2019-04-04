@@ -3,6 +3,7 @@
 #header{
   display: flex;
   justify-content: center;
+  color: white;
 }
 
 h1{
@@ -15,7 +16,7 @@ ul{
   align-items: center;
   flex-direction: column;
   list-style-type: none;
-  color: #0ea1db;
+  color: white;
 }
 
 ul li{
@@ -120,7 +121,7 @@ ul li{
 body {
   font-family: Sans-serif;
   font-size: 11px;
-  background: url(https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/musical-instruments-map-of-the-world-map-michael-tompsett.jpg) no-repeat center center fixed; 
+  background: url(https://media.giphy.com/media/zKwHP8b6v0WOc/giphy.gif) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -131,6 +132,8 @@ body {
 
   .slice {
       cursor: pointer;
+      font-size: 20px;
+      overflow: visible;
   }
 
   .slice .main-arc {
