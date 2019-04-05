@@ -11,7 +11,7 @@ function computeTextRotation(d) {
 
 export const makeD3 = nodeData => {
   if (nodeData.children.length === 0) {
-   return renderError();
+    return renderError();
   }
   let icon = document.getElementsByTagName("div")[16];
   icon.classList.remove("loader");
@@ -22,7 +22,10 @@ export const makeD3 = nodeData => {
 
   var formatNumber = d3.format(",d");
 
-  var x = d3.scaleLinear().range([0, 2 * Math.PI]).clamp(true);
+  var x = d3
+    .scaleLinear()
+    .range([0, 2 * Math.PI])
+    .clamp(true);
 
   var y = d3.scaleSqrt().range([radius * 0.1, radius]);
   const dark = [
@@ -71,7 +74,7 @@ export const makeD3 = nodeData => {
   var color = d3.scaleOrdinal(lightGreenFirstPalette); // <-- 3
 
   var partition = d3.partition();
-  
+
   const arc = d3
     .arc()
     .startAngle(d => x(d.x0))
@@ -100,57 +103,55 @@ export const makeD3 = nodeData => {
   const textFits = d => {
     const CHAR_SPACE = 6;
     const deltaAngle = x(d.x1) - x(d.x0);
-    const r = Math.max(0, (y(d.y0) + y(d.y1)) / 2);
+    const r = Math.max(0, (y(d.y0) + y(d.y1)) / 16);
     const perimeter = r * deltaAngle;
 
     return d.data.name.length * CHAR_SPACE < perimeter;
   };
 
   const svg = d3
-    .select('body')
-    .append('svg')
-    .style('width', '100vw')
-    .style('height', '100vh')
-    .attr('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`)
-    .on('click', () => focusOn()); // Reset zoom on canvas click
-
+    .select("body")
+    .append("svg")
+    .style("width", "100vw")
+    .style("height", "100vh")
+    .attr("viewBox", `${-width / 2} ${-height / 2} ${width} ${height}`)
+    .on("click", () => focusOn()); // Reset zoom on canvas click
 
   let root = d3.hierarchy(nodeData);
   root.sum(d => d.size);
 
-  const slice = svg.selectAll('g.slice').data(partition(root).descendants());
+  const slice = svg.selectAll("g.slice").data(partition(root).descendants());
 
   slice.exit().remove();
 
   const newSlice = slice
     .enter()
-    .append('g')
-    .attr('class', 'slice')
-    .on('click', d => {
+    .append("g")
+    .attr("class", "slice")
+    .on("click", d => {
       d3.event.stopPropagation();
       focusOn(d);
     });
 
   newSlice
-    .append('title')
-    .text(d => textFits(d) ? d.data.name + '\n' + formatNumber(d.value) : "");
+    .append("title")
+    .text(d => (textFits(d) ? d.data.name + "\n" + formatNumber(d.value) : ""));
 
   newSlice
-    .append('path')
-    .attr('class', 'main-arc')
-    .style('fill', d => color((d.children ? d : d.parent).data.name))
-    .attr('d', arc);
+    .append("path")
+    .attr("class", "main-arc")
+    .style("fill", d => color((d.children ? d : d.parent).data.name))
+    .attr("d", arc);
 
   newSlice
-    .append('path')
-    .attr('class', 'hidden-arc')
-    .attr('id', (_, i) => `hiddenArc${i}`)
-    .attr('d', middleArcLine);
+    .append("path")
+    .attr("class", "hidden-arc")
+    .attr("id", (_, i) => `hiddenArc${i}`)
+    .attr("d", middleArcLine);
 
   const text = newSlice
-    .append('text')
-    .attr('display', d => (textFits(d) ? d.data.name : d.data.rating));
-
+    .append("text")
+    .attr("display", d => (textFits(d) ? d.data.name : d.data.rating));
 
   text
     .append("textPath")
@@ -164,7 +165,7 @@ export const makeD3 = nodeData => {
     const transition = svg
       .transition()
       .duration(750)
-      .tween('scale', () => {
+      .tween("scale", () => {
         const xd = d3.interpolate(x.domain(), [d.x0, d.x1]),
           yd = d3.interpolate(y.domain(), [d.y0, 1]);
         return t => {
@@ -173,15 +174,15 @@ export const makeD3 = nodeData => {
         };
       });
 
-    transition.selectAll('path.main-arc').attrTween('d', d => () => arc(d));
+    transition.selectAll("path.main-arc").attrTween("d", d => () => arc(d));
 
     transition
-      .selectAll('path.hidden-arc')
-      .attrTween('d', d => () => middleArcLine(d));
+      .selectAll("path.hidden-arc")
+      .attrTween("d", d => () => middleArcLine(d));
 
     transition
-      .selectAll('text')
-      .attrTween('display', d => () => (textFits(d) ? d.data.name : ''));
+      .selectAll("text")
+      .attrTween("display", d => () => (textFits(d) ? d.data.name : d.data.name));
 
     moveStackToFront(d);
 
@@ -189,9 +190,9 @@ export const makeD3 = nodeData => {
 
     function moveStackToFront(elD) {
       svg
-        .selectAll('.slice')
+        .selectAll(".slice")
         .filter(d => d === elD)
-        .each(function (d) {
+        .each(function(d) {
           this.parentNode.appendChild(this);
           if (d.parent) {
             moveStackToFront(d.parent);

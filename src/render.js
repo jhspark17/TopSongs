@@ -26,7 +26,7 @@ const render = (nodes, country, num) => {
         tempTrack.trackUrl = track.track.track_share_url;
         tempTrack.rating = track.track.track_rating;
         tempTrack.favorites = track.track.num_favourite;
-        tempTrack.size = 1000;
+        tempTrack.size = 1;
         tempTrack.display = [tempTrack.name, tempTrack.url]
         tempAlbum.children.push(tempTrack);
       }
