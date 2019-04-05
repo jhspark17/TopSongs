@@ -76,6 +76,8 @@ export const makeD3 = nodeData => {
     .arc()
     .startAngle(d => x(d.x0))
     .endAngle(d => x(d.x1))
+    .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
+    .padRadius(radius / 2)
     .innerRadius(d => Math.max(0, y(d.y0)))
     .outerRadius(d => Math.max(0, y(d.y1)));
 
@@ -131,7 +133,7 @@ export const makeD3 = nodeData => {
 
   newSlice
     .append('title')
-    .text(d => textFits(d) ? d.data.name + '\n' + formatNumber(d.value) : "INVALID COUNTRY");
+    .text(d => textFits(d) ? d.data.name + '\n' + formatNumber(d.value) : "");
 
   newSlice
     .append('path')
