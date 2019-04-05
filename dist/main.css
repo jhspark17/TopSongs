@@ -8,18 +8,20 @@
 
 h1{
   font-size: 30px;
-}
-
-ul{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  list-style-type: none;
   color: white;
 }
 
-ul li{
+div span{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  list-style-type: none;
+  color: white;
+  padding: 0px;
+}
+
+ul div{
   padding-bottom: 10px;
   text-decoration-style: none;
 }
@@ -27,24 +29,31 @@ ul li{
 .label{
   font-size: 20px;
   font-weight: bold;
+  color: white;
+  padding-bottom: 10px;
+  list-style: circle;
 }
 
 .content{
   font-size: 20px;
   font-weight: bolder;
+  color: white;
+  display: flex;
+  align-self: center;
+ 
 }
 
 #country{
-  padding-right: 30px;
+  padding-bottom: 40px;
 }
 
 .text-input{
-  padding-top: 20px;
+  padding-top: 10px;
   display: block;
-  font-size: 14px;
-  margin: 0 0 9px;
+  font-size: 24px;
+  margin: 0 auto;
   padding: 5px 9px;
-  width: 5%;
+  width: 25%;
   background: #fff;
   border: 1px solid #999;
   border-radius: 3px;
@@ -56,9 +65,10 @@ ul li{
 .input{
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  height: 200px;
+  width: 300px;
   flex-direction: column;
-  height: 80px;
+
 }
 
 .submitButtonContainer{
@@ -68,13 +78,14 @@ ul li{
 .submitButton{
   font-size: 16px;
   font-weight: 700;
-  width: 5%;
+  width: 30%;
   padding: 12px 0;
   color: white;
   border: 1px solid;
   border-radius: 10px;
   background-color: #0ea1db;
   box-sizing: border-box;
+  
 }
 
 
@@ -165,3 +176,35 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.render-error{
+  color: red;
+  font-size: 36px;
+  border: 2px solid white;
+  padding: 20px;
+  background-color: black;
+  margin-top: 20px;
+ 
+}
+
+.container{
+  display: flex;
+  justify-content: space-around;
+}
+
+.left-direction{
+  width: 400px;
+  height: 300px;
+  border: 2px solid white; 
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+
+.temp{
+  text-align: center;
+}
+

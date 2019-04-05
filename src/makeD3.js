@@ -10,8 +10,10 @@ function computeTextRotation(d) {
 }
 
 export const makeD3 = nodeData => {
-  console.log(nodeData)
-  let icon = document.getElementsByTagName("div")[3];
+  if (nodeData.children.length === 0) {
+   return renderError();
+  }
+  let icon = document.getElementsByTagName("div")[16];
   icon.classList.remove("loader");
 
   var width = 960,
@@ -129,7 +131,7 @@ export const makeD3 = nodeData => {
 
   newSlice
     .append('title')
-    .text(d => d.data.name + '\n' + formatNumber(d.value));
+    .text(d => textFits(d) ? d.data.name + '\n' + formatNumber(d.value) : "INVALID COUNTRY");
 
   newSlice
     .append('path')
@@ -149,10 +151,10 @@ export const makeD3 = nodeData => {
 
 
   text
-    .append('textPath')
-    .attr('startOffset', '50%')
-    .attr('xlink:href', (_, i) => `#hiddenArc${i}`)
-    .text(d => d.data.name);
+    .append("textPath")
+    .attr("startOffset", "50%")
+    .attr("xlink:href", (_, i) => `#hiddenArc${i}`)
+    .text(d => (textFits(d) ? d.data.name : d.data.name));
 
   function focusOn(d = { x0: 0, x1: 1, y0: 0, y1: 1 }) {
     // Reset to top-level if no data point specified
@@ -177,7 +179,7 @@ export const makeD3 = nodeData => {
 
     transition
       .selectAll('text')
-      .attrTween('display', d => () => (textFits(d) ? d.data.rating : ''));
+      .attrTween('display', d => () => (textFits(d) ? d.data.name : ''));
 
     moveStackToFront(d);
 
@@ -195,6 +197,14 @@ export const makeD3 = nodeData => {
         });
     }
   }
+};
+
+const renderError = () => {
+  let icon = document.getElementsByTagName("div")[16];
+  icon.classList.remove("loader");
+  icon.innerHTML += "No Data Exists In the Country";
+  icon.className += "render-error";
+
 };
 
 

@@ -14,10 +14,18 @@
 <body>
   
   <h1 id="header">Top Artists in a Country</h1>
-  <ul>
-    <li><span class="label">Country:</span> <span class="content"> &nbsp Select a country</span></li>
-    <li><span class="label">Limit:</span> <span class="content"> &nbsp Select the number of artists</span></li>
-  </ul>
+  <div class="container">
+    <div class="left-direction">
+      <h1>Interacting with Chart:</h1>
+      <div class="temp">
+        <div class="label">1. Select a country from the dropdown</div>
+        <div class="label">2. Select the number of artists</div>
+        <div class="label">3. Press Submit</div>
+        <div class="label">4. Select an arc to center it</div>
+        <div class="label">5. Select the middle to zoom out</div>
+      </div>
+    </div>
+      
   <div class="input">
     <select id="country">
       <option value="us">United States</option>
@@ -119,13 +127,22 @@
       <option value="vn">Vietnam</option>
     </select>
     <input type="text" id="limit" placeholder="Limit" class="text-input">
-    </div>
     <div class="submitButtonContainer">
     <input class="submitButton" type="submit" id="submit" value="Submit">
     </div>
+    </div>
+    
+    <div class="left-direction">
+      <h1>Data inside Chart</h1>
+      <div class="temp">
+      <div class="label">1. Inner most: Top Artists</div>
+      <div class="label">2. Middle inner: Albums for each Artist</div>
+      <div class="label">3. Outer most: Tracks for each album</div>
+      </div>
+    </div>
+    </div>
     <div class="svg">
     <div></div>
-    <svg></svg>
     </div>
     <script type="text/javascript" src="./bundle.js"></script>
 </body>
