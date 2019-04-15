@@ -108,9 +108,9 @@ export const makeD3 = nodeData => {
 
     return d.data.name.length * CHAR_SPACE < perimeter;
   };
-
+  
   const svg = d3
-    .select("body")
+    .select(".svg")
     .append("svg")
     .style("width", "100vw")
     .style("height", "100vh")

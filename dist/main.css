@@ -1,17 +1,16 @@
-
 /*-------------------------- Header ------------------------------------ */
-#header{
+#header {
   display: flex;
   justify-content: center;
   color: white;
 }
 
-h1{
+h1 {
   font-size: 30px;
   color: white;
 }
 
-div span{
+div span {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -21,12 +20,12 @@ div span{
   padding: 0px;
 }
 
-ul div{
+ul div {
   padding-bottom: 10px;
   text-decoration-style: none;
 }
 
-.label{
+.label {
   font-size: 20px;
   font-weight: bold;
   color: white;
@@ -34,20 +33,19 @@ ul div{
   list-style: circle;
 }
 
-.content{
+.content {
   font-size: 20px;
   font-weight: bolder;
   color: white;
   display: flex;
   align-self: center;
- 
 }
 
-#country{
+#country {
   padding-bottom: 40px;
 }
 
-.text-input{
+.text-input {
   padding-top: 10px;
   display: block;
   font-size: 24px;
@@ -62,20 +60,19 @@ ul div{
 
 /* Choices */
 
-.input{
+.input {
   display: flex;
   justify-content: space-around;
   height: 200px;
   width: 300px;
   flex-direction: column;
-
 }
 
-.submitButtonContainer{
+.submitButtonContainer {
   display: flex;
   justify-content: center;
 }
-.submitButton{
+.submitButton {
   font-size: 16px;
   font-weight: 700;
   width: 30%;
@@ -85,13 +82,11 @@ ul div{
   border-radius: 10px;
   background-color: #0ea1db;
   box-sizing: border-box;
-  
 }
-
 
 /* Input */
 #myInput {
-  background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+  background-image: url("/css/searchicon.png"); /* Add a search icon to input */
   background-position: 10px 12px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */
   width: 100%; /* Full-width */
@@ -123,7 +118,7 @@ ul div{
   background-color: #eee; /* Add a hover effect to all links, except for headers */
 }
 
-.svg{
+.svg {
   margin-top: 10px;
   display: flex;
   justify-content: center;
@@ -132,36 +127,35 @@ ul div{
 body {
   font-family: Sans-serif;
   font-size: 11px;
-  background: url(https://media.giphy.com/media/zKwHP8b6v0WOc/giphy.gif) no-repeat center center fixed; 
+  background: url(https://media.giphy.com/media/zKwHP8b6v0WOc/giphy.gif)
+    no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover; 
+  background-size: cover;
   width: 100%;
   height: auto;
-  }
+}
 
-  .slice {
-      cursor: pointer;
-      font-size: 20px;
-      hyphens: auto;
-  }
+.slice {
+  cursor: pointer;
+  font-size: 20px;
+  hyphens: auto;
+}
 
-  .slice .main-arc {
-      stroke: #E5E2E0;
-      stroke-width: 1px;
-      
-  }
+.slice .main-arc {
+  stroke: #e5e2e0;
+  stroke-width: 1px;
+}
 
-  .slice .hidden-arc {
-      fill: none;
-  }
+.slice .hidden-arc {
+  fill: none;
+}
 
-  .slice text {
-      pointer-events: none;
-      text-anchor: middle;
-  }
-
+.slice text {
+  pointer-events: none;
+  text-anchor: middle;
+}
 
 .loader {
   border: 16px solid #ecdd0a; /* Light grey */
@@ -173,38 +167,47 @@ body {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.render-error{
+.render-error {
   color: red;
   font-size: 36px;
   border: 2px solid white;
   padding: 20px;
   background-color: black;
   margin-top: 20px;
- 
 }
 
-.container{
+.container {
   display: flex;
   justify-content: space-around;
 }
 
-.left-direction{
+.left-direction {
   width: 400px;
   height: 300px;
-  border: 2px solid white; 
+  border: 2px solid white;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
 }
 
-
-
-.temp{
+.temp {
   text-align: center;
 }
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  /* display: flex;
+  justify-content: center; */
+}
