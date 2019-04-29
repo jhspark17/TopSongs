@@ -13,7 +13,7 @@ export const makeD3 = nodeData => {
   if (nodeData.children.length === 0) {
     return renderError();
   }
-  let icon = document.getElementsByTagName("div")[16];
+  let icon = document.getElementsByClassName("div")[16];
   icon.classList.remove("loader");
 
   var width = 960,
