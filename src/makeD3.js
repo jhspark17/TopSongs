@@ -16,6 +16,7 @@ export const makeD3 = nodeData => {
   let icon = document.getElementsByTagName("div")[16];
   icon.classList.remove("loader");
 
+
   var width = 960,
     height = 700,
     radius = Math.min(width, height) / 2 - 10;
@@ -108,7 +109,7 @@ export const makeD3 = nodeData => {
 
     return d.data.name.length * CHAR_SPACE < perimeter;
   };
-  
+
   const svg = d3
     .select(".svg")
     .append("svg")
@@ -182,7 +183,9 @@ export const makeD3 = nodeData => {
 
     transition
       .selectAll("text")
-      .attrTween("display", d => () => (textFits(d) ? d.data.name : d.data.name));
+      .attrTween("display", d => () =>
+        textFits(d) ? d.data.name : d.data.name
+      );
 
     moveStackToFront(d);
 
@@ -207,10 +210,4 @@ const renderError = () => {
   icon.classList.remove("loader");
   icon.innerHTML += "No Data Exists In the Country";
   icon.className += "render-error";
-
 };
-
-
-
-
-
