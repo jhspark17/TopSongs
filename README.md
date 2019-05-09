@@ -17,7 +17,7 @@ TopSongs is a javascript and D3 application where users can see the number of to
  
 ### Splash Page
 Once user accesses website, they can select the country and number of artists they want to see.
-<img width="1280" alt="Screen Shot 2019-05-08 at 5 03 31 PM" src="https://user-images.githubusercontent.com/42100510/57416059-63440e80-71b3-11e9-8500-941afa49f12e.png">
+<img width="1277" alt="Screen Shot 2019-05-08 at 5 38 16 PM" src="https://user-images.githubusercontent.com/42100510/57417197-61c91500-71b8-11e9-915b-e77f03cbfec4.png">
 
 
 
@@ -25,11 +25,12 @@ Once user accesses website, they can select the country and number of artists th
 
 ### D3 Sunburst Chart
 Will retrieve data on artist and limit, which will then be portrayed in a Sunburst Chart.
-<img width="1280" alt="Screen Shot 2019-05-08 at 5 03 48 PM" src="https://user-images.githubusercontent.com/42100510/57416074-722ac100-71b3-11e9-9499-cfb1bfca8e91.png">
+<img width="1277" alt="Screen Shot 2019-05-08 at 5 38 38 PM" src="https://user-images.githubusercontent.com/42100510/57417174-4cec8180-71b8-11e9-998e-bb019361485e.png">
 
 
 
 
 ### Interacting with Sunburst Chart
 Users can select specific arcs to zoom in on arcs.
-<img width="1280" alt="Screen Shot 2019-05-08 at 5 04 00 PM" src="https://user-images.githubusercontent.com/42100510/57416048-532c2f00-71b3-11e9-879b-ba583bb86e9d.png">
+<img <img width="1277" alt="Screen Shot 2019-05-08 at 5 38 49 PM" src="https://user-images.githubusercontent.com/42100510/57417156-3ba37500-71b8-11e9-997f-620269c70725.png">
+
