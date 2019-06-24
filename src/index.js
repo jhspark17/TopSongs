@@ -3,7 +3,7 @@ const axios = require('axios');
 import render from './render';
 document.addEventListener('DOMContentLoaded', () => {
  const displayLoader = () => {
-   let icon = document.getElementsByTagName("div")[16];
+   let icon = document.getElementsByTagName("div")[17];
    icon.classList.remove("render-error");
    icon.innerHTML = "";
    icon.className += "loader";

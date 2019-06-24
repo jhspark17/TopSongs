@@ -13,7 +13,7 @@ export const makeD3 = nodeData => {
   if (nodeData.children.length === 0) {
     return renderError();
   }
-  let icon = document.getElementsByTagName("div")[16];
+  let icon = document.getElementsByTagName("div")[17];
   icon.classList.remove("loader");
 
 
@@ -206,7 +206,7 @@ export const makeD3 = nodeData => {
 };
 
 const renderError = () => {
-  let icon = document.getElementsByTagName("div")[16];
+  let icon = document.getElementsByTagName("div")[17];
   icon.classList.remove("loader");
   icon.innerHTML += "No Data Exists In the Country";
   icon.className += "render-error";
