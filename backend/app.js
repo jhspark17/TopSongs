@@ -20,7 +20,6 @@ app.use(bodyParser.json()); //allows our app to respond to json
 
 
 app.post('/artists', (request, response) => {
-  // make api call using fetch
   fetch(
     `http://api.musixmatch.com/ws/1.1/chart.artists.get?apikey=8f1e02a00118dbdc0cf0c0fc1683c0d0&page=1&page_size=${
       request.body.limit
@@ -31,7 +30,7 @@ app.post('/artists', (request, response) => {
     })
     .then(body => {
       let results = JSON.parse(body);
-      response.send(results); // sends to frontend
+      response.send(results); 
     });
 
   });
@@ -47,7 +46,7 @@ app.post('/albums', (request, response) => {
     })
     .then(body => {
       let results = JSON.parse(body);
-      response.send(results); // sends to frontend
+      response.send(results); 
     });
 
 });
